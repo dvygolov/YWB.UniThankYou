@@ -28,6 +28,8 @@
     <Folder Include="templates\shakes\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include=".gitattributes" />
+    <Content Include=".gitignore" />
     <Content Include="templates\shakes\t.html" />
     <Content Include="templates\shakes\text.txt" />
   </ItemGroup>
