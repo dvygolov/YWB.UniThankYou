@@ -17,6 +17,7 @@
     <IncludeDebugInformation>false</IncludeDebugInformation>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="example.php" />
     <Compile Include="requestfunc.php" />
     <Compile Include="htmlinject.php" />
     <Compile Include="index.php" />
@@ -25,11 +26,14 @@
     <Folder Include="cache\" />
     <Folder Include="templates\" />
     <Folder Include="Properties\" />
+    <Folder Include="templates\m1\" />
     <Folder Include="templates\shakes\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include=".gitattributes" />
     <Content Include=".gitignore" />
+    <Content Include="templates\m1\t.html" />
+    <Content Include="templates\m1\text.txt" />
     <Content Include="templates\shakes\t.html" />
     <Content Include="templates\shakes\text.txt" />
   </ItemGroup>
