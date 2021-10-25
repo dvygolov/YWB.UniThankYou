@@ -1,0 +1,23 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31702.278
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{A0786B88-2ADB-4C21-ABE8-AA2D79766269}") = "YWB.UniThankYou", "YWB.UniThankYou.phpproj", "{AB2E8AFD-4F75-411B-AB2D-BA20BC37D72B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AB2E8AFD-4F75-411B-AB2D-BA20BC37D72B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB2E8AFD-4F75-411B-AB2D-BA20BC37D72B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7EBE7AFF-C3DF-443D-9E2D-EC5DCDE784B1}
+	EndGlobalSection
+EndGlobal
