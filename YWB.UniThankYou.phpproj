@@ -17,7 +17,8 @@
     <IncludeDebugInformation>false</IncludeDebugInformation>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="example.php" />
+    <Compile Include="exampleredirect.php" />
+    <Compile Include="exampleinclude.php" />
     <Compile Include="requestfunc.php" />
     <Compile Include="htmlinject.php" />
     <Compile Include="index.php" />
