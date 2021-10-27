@@ -5,7 +5,7 @@ error_reporting(E_ALL);
 
 include 'htmlinject.php';
 
-$translator='deepl'; //deepl or libretranslate
+$translator='libretranslate'; //deepl or libretranslate. If you want to use DeepL then open translator.php file and put your API key there.
 
 $templates_dir='templates';
 $templates_lang='en'; //You can change it to the language of your template's text
