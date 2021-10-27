@@ -1,6 +1,12 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 include 'htmlinject.php';
-$translateAddress='https://libretranslate.de/translate';
+
+$translator='deepl'; //deepl or libretranslate
+
 $templates_dir='templates';
 $templates_lang='en'; //You can change it to the language of your template's text
 $cache_dir='cache';
@@ -34,17 +40,18 @@ if (!file_exists($cached_thankyou_path)){
     //we should get the text and translate it
     $text_path=__DIR__.'/'.$templates_dir.'/'.$template.'/text.txt';
     $text_content=file_get_contents($text_path);
-    $params = array("q"=>$text_content,"source"=>$templates_lang,"target"=>$lang,"format"=>"text");
-    include 'requestfunc.php';
-    $json=json_decode(post($translateAddress,$params));
-    $translation=array();
-    if (isset($json->error)){ //this language is not supported so we show an english version
+
+	include 'translator.php';	
+	$translation=array();    
+    $translated_text=translate($text_content,$templates_lang,$lang,$translator);
+	if ($translated_text==='error'||!isset($translated_text)){
         $cached_thankyou_path=__DIR__.'/'.$cache_dir.'/'.$template.'/en.html';
         $translation=explode("\n",$text_content);
     }
     else {
-        $translation=explode("\n",$json->translatedText);
+        $translation=explode("\n",$translated_text);
     }
+    
     $template_path=__DIR__.'/'.$templates_dir.'/'.$template.'/t.html';
     $template_content=file_get_contents($template_path);
     for ($i=0;$i<count($translation);$i++){
