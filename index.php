@@ -4,8 +4,9 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 include 'htmlinject.php';
+include 'country2lang.php';
 
-$translator='libretranslate'; //deepl or libretranslate. If you want to use DeepL then open translator.php file and put your API key there.
+$translator='deepl'; //deepl or libretranslate
 
 $templates_dir='templates';
 $templates_lang='en'; //You can change it to the language of your template's text
@@ -23,7 +24,10 @@ if (!is_dir(__DIR__.'/'.$cache_dir)) mkdir(__DIR__.'/'.$cache_dir);
 
 //setting thankyou page language
 if (!isset($lang))
+{
     $lang=strtolower(isset($_REQUEST['lang'])?$_REQUEST['lang']:(isset($_REQUEST['country'])?$_REQUEST['country']:'en'));
+}
+$lang=getcountrylang($lang);
 
 if (!isset($template))
     $template=isset($_REQUEST['template'])?$_REQUEST['template']:'random';
@@ -41,8 +45,8 @@ if (!file_exists($cached_thankyou_path)){
     $text_path=__DIR__.'/'.$templates_dir.'/'.$template.'/text.txt';
     $text_content=file_get_contents($text_path);
 
-	include 'translator.php';	
-	$translation=array();    
+	include 'translator.php';
+	$translation=array();
     $translated_text=translate($text_content,$templates_lang,$lang,$translator);
 	if ($translated_text==='error'||!isset($translated_text)){
         $cached_thankyou_path=__DIR__.'/'.$cache_dir.'/'.$template.'/en.html';
@@ -51,7 +55,7 @@ if (!file_exists($cached_thankyou_path)){
     else {
         $translation=explode("\n",$translated_text);
     }
-    
+
     $template_path=__DIR__.'/'.$templates_dir.'/'.$template.'/t.html';
     $template_content=file_get_contents($template_path);
     for ($i=0;$i<count($translation);$i++){

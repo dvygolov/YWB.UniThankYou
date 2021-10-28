@@ -19,9 +19,11 @@
   <ItemGroup>
     <Compile Include="exampleredirect.php" />
     <Compile Include="exampleinclude.php" />
+    <Compile Include="country2lang.php" />
     <Compile Include="requestfunc.php" />
     <Compile Include="htmlinject.php" />
     <Compile Include="index.php" />
+    <Compile Include="translator.php" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="cache\" />
@@ -33,6 +35,7 @@
   <ItemGroup>
     <Content Include=".gitattributes" />
     <Content Include=".gitignore" />
+    <Content Include="README.md" />
     <Content Include="templates\m1\t.html" />
     <Content Include="templates\m1\text.txt" />
     <Content Include="templates\shakes\t.html" />
