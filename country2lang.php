@@ -6,23 +6,16 @@ function getcountrylang($country){
 		case 'bo':
 		case 'cl':
 		case 'co':
-		case 'cr':
-		case 'do':
 		case 'ec':
-		case 'es':
 		case 'gt':
 		case 'hn':
 		case 'mx':
-		case 'ni':
-		case 'pa':
 		case 'pe':
-		case 'pr':
-		case 'py':
-		case 'sv':
-		case 'us':
-		case 'uy':
-		case 've':
 			return 'es';
+        case 'nz':
+        case 'ph':
+        case 'us':
+			return 'en';
 	}
 	return $country;
 }
