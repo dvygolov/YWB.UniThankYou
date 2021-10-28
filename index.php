@@ -6,7 +6,7 @@ error_reporting(E_ALL);
 include 'htmlinject.php';
 include 'country2lang.php';
 
-$translator='deepl'; //deepl or libretranslate
+$translator='libretranslate'; //deepl or libretranslate
 
 $templates_dir='templates';
 $templates_lang='en'; //You can change it to the language of your template's text
