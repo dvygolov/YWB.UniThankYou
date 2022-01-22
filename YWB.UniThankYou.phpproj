@@ -7,8 +7,7 @@
     </RootNamespace>
     <OutputType>Library</OutputType>
     <ProjectTypeGuids>{A0786B88-2ADB-4C21-ABE8-AA2D79766269}</ProjectTypeGuids>
-    <RuntimeVersion>8.0</RuntimeVersion>
-    <Runtime>PHP</Runtime>
+    <RuntimeVersion>7.4</RuntimeVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <IncludeDebugInformation>true</IncludeDebugInformation>
@@ -17,6 +16,7 @@
     <IncludeDebugInformation>false</IncludeDebugInformation>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="ipcountry.php" />
     <Compile Include="exampleredirect.php" />
     <Compile Include="exampleinclude.php" />
     <Compile Include="country2lang.php" />
@@ -35,6 +35,8 @@
   <ItemGroup>
     <Content Include=".gitattributes" />
     <Content Include=".gitignore" />
+    <Content Include="geoip2.phar" />
+    <Content Include="GeoLite2-Country.mmdb" />
     <Content Include="README.md" />
     <Content Include="templates\m1\t.html" />
     <Content Include="templates\m1\text.txt" />

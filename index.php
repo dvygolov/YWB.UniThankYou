@@ -5,6 +5,7 @@ error_reporting(E_ALL);
 
 include 'htmlinject.php';
 include 'country2lang.php';
+require 'ipcountry.php';
 
 $translator='libretranslate'; //deepl or libretranslate
 
@@ -22,6 +23,11 @@ if (isset($_REQUEST[$pixel_sub]))
     $pixel_code='<img height="1" width="1" src="https://www.facebook.com/tr?id='.$_REQUEST[$pixel_sub].'&ev='.$pixel_event.'&noscript=1">';
 if (!is_dir(__DIR__.'/'.$cache_dir)) mkdir(__DIR__.'/'.$cache_dir);
 
+//logging ip, useragent and country
+$ip=getip();
+$country=getcountry();
+$ua=isset($_SERVER['HTTP_USER_AGENT'])?$_SERVER['HTTP_USER_AGENT']:'Not Found!';
+file_put_contents('iplog.txt',$ip.' '.$country.' '.$ua,FILE_APPEND);
 //setting thankyou page language
 if (!isset($lang))
 {
