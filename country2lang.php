@@ -1,5 +1,5 @@
 <?php
-function getcountrylang($country){
+function get_country_lang($country){
 	$country=strtolower($country);
 	switch($country){
 		case 'ar':
@@ -16,6 +16,8 @@ function getcountrylang($country){
         case 'ph':
         case 'us':
 			return 'en';
+        case 'si':
+			return 'sl';
 	}
 	return $country;
 }

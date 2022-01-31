@@ -1,7 +1,7 @@
 <?php
-$lang='hi';
-$template='m1';
+$lang='hr';
+$template='shakes';
 $pixel_event='Purchase';
 $pixel_sub='pixel_id';
-include '../thankyou/index.php';
+include 'index.php';
 ?>

@@ -6,8 +6,6 @@ error_reporting(E_ALL);
 include 'htmlinject.php';
 include 'country2lang.php';
 
-$translator='libretranslate'; //deepl or libretranslate
-
 $templates_dir='templates';
 $templates_lang='en'; //You can change it to the language of your template's text
 $cache_dir='cache';
@@ -27,7 +25,7 @@ if (!isset($lang))
 {
     $lang=strtolower(isset($_REQUEST['lang'])?$_REQUEST['lang']:(isset($_REQUEST['country'])?$_REQUEST['country']:'en'));
 }
-$lang=getcountrylang($lang);
+$lang=get_country_lang($lang);
 
 if (!isset($template))
     $template=isset($_REQUEST['template'])?$_REQUEST['template']:'random';
@@ -47,7 +45,7 @@ if (!file_exists($cached_thankyou_path)){
 
 	include 'translator.php';
 	$translation=array();
-    $translated_text=translate($text_content,$templates_lang,$lang,$translator);
+    $translated_text=translate($text_content,$templates_lang,$lang);
 	if ($translated_text==='error'||!isset($translated_text)){
         $cached_thankyou_path=__DIR__.'/'.$cache_dir.'/'.$template.'/en.html';
         $translation=explode("\n",$text_content);
