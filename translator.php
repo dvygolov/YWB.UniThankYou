@@ -1,4 +1,6 @@
 <?php
+    //UniThankYou Page by Yellow Web version 1.0 
+    //visit my site https://yellowweb.top
     define("DEEPL_KEY","YOUR_API_KEY");
     include 'requestfunc.php';
     include 'google.php';
@@ -18,12 +20,12 @@
             !in_array($lang, $ggllanguages))
 			return 'error';
 
-		if (in_array($templates_lang,$ltlanguages)&&in_array($lang,$ltlanguages))
+        if (in_array($templates_lang,$ggllanguages)&&in_array($lang,$ggllanguages))
+			$translator='google';
+		elseif (in_array($templates_lang,$ltlanguages)&&in_array($lang,$ltlanguages))
 			$translator='libretranslate';
 		elseif (in_array($templates_lang,$dpllanguages)&&in_array($lang,$dpllanguages))
 			$translator='deepl';
-		elseif (in_array($templates_lang,$ggllanguages)&&in_array($lang,$ggllanguages))
-			$translator='google';
 
 		switch($translator){
             case 'libretranslate':
@@ -53,4 +55,4 @@
                     return 'error';
         }
 	}
-?>
+
