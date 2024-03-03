@@ -1,17 +1,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta name="viewport" content="width=320" />
-    <meta name="MobileOptimized" content="width=320" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{T1}</title>
-    <meta http-equiv="X-Translated-By" content="Google" />
-    <meta http-equiv="X-Translated-To" content="en" />
     <meta name="robots" content="none" />
 </head>
 <body style="margin-top: 56px;">
     <style>
         body {
-            margin: 0;
+            margin: auto;
             color: #fff;
             font: 17px/25px Georgia, "Times New Roman", Times, serif;
             background: #1f242a;
@@ -34,9 +31,9 @@
             padding: 35px;
             border: 5px dashed #fcca49;
             border-radius: 30px;
-            background: linear-gradient(to bottom, #262d36, #9a6d1e, #262d36);
-            background: -webkit-linear-gradient(to bottom, #262d36, #9a6d1e, #262d36);
-            background: -moz-linear-gradient(to bottom, #262d36, #9a6d1e, #262d36);
+      background: linear-gradient(to bottom, #262d36, #2c9a1e, #262d36);
+      background: -webkit-linear-gradient(to bottom, #262d36, #2c9a1e, #262d36);
+      background: -moz-linear-gradient(to bottom, #262d36, #2c9a1e, #262d36);
         }
 
             .order-block:after {
@@ -150,6 +147,11 @@
             margin-bottom: 15px;
         }
 
+        .info h4,
+        .info p {
+            display:inline
+        }
+
         @media screen and (max-width: 1120px) {
             .order-block {
                 width: 52%;
@@ -175,6 +177,11 @@
                 <h2>
                     <span><font style="vertical-align: inherit;">{T1}</font></span>
                 </h2>
+                <h3><b>{T4}</b></h3>
+                <div class="info"><h4>{T5}</h4> <p style="color:black">{NAME}</p></div>
+                <div class="info"><h4>{T6}</h4> <p style="color:black">{PHONE}</p></div>
+                <h3>{T7}</h3>
+                <br />
                 <p><font style="vertical-align: inherit;">{T2}</font></p>
                 <p><font style="vertical-align: inherit;">{T3}</font></p>
             </div>

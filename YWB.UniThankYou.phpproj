@@ -16,27 +16,29 @@
     <IncludeDebugInformation>false</IncludeDebugInformation>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="exampleredirect.php" />
+    <Compile Include="countryfuncs.php" />
     <Compile Include="exampleinclude.php" />
-    <Compile Include="country2lang.php" />
-    <Compile Include="google.php" />
+    <Compile Include="exampleredirect.php" />
     <Compile Include="requestfunc.php" />
     <Compile Include="htmlinject.php" />
     <Compile Include="index.php" />
+    <Compile Include="template.php" />
     <Compile Include="translator.php" />
+    <Compile Include="translators\deepl.php" />
+    <Compile Include="translators\google.php" />
+    <Compile Include="translators\libretranslate.php" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="cache\" />
     <Folder Include="templates\" />
-    <Folder Include="Properties\" />
     <Folder Include="templates\m1\" />
     <Folder Include="templates\shakes\" />
+    <Folder Include="translators\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include=".gitattributes" />
     <Content Include=".gitignore" />
     <Content Include="composer.json" />
-    <Content Include="composer.lock" />
     <Content Include="README.md" />
     <Content Include="templates\m1\t.html" />
     <Content Include="templates\m1\text.txt" />

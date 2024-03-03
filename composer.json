@@ -1,5 +1,5 @@
 {
-    "require": {
-        "vielhuber/stringhelper": "^4.9"
-    }
+  "require": {
+    "stichoza/google-translate-php": "^5.1"
+  }
 }
