@@ -92,15 +92,22 @@ class ThankyouTemplate
 
     public function addPixelCode()
     {
+        global $pixel_sub,$pixel_event,$pixel_event_id;
         if (!isset($pixel_sub))
-            $pixel_sub = 'px'; //The GET/POST parameter that will have a Facebook's pixel ID as it's value
-        if (!isset($pixel_event)) {
-            $pixel_event = 'Lead';
-            if (isset($_REQUEST['pixelevent']))
-                $pixel_event = $_REQUEST['pixelevent'];
+            $pixel_sub = isset($_REQUEST['pixelsub'])?$_REQUEST['pixelsub']:'px'; //The GET/POST parameter that will have a Facebook's pixel ID as it's value
+        if (!isset($pixel_event))
+            $pixel_event = isset($_REQUEST['pixelevent'])?$_REQUEST['pixelevent']:'Lead';
+
+        $px_id = isset($_REQUEST[$pixel_sub])?$_REQUEST[$pixel_sub]:null;
+        if (!is_null($px_id)){
+            $pixel_code = "<img height='1' width='1' src='https://www.facebook.com/tr?id=$px_id&ev=$pixel_event";
+            if (!isset($pixel_event_id))
+                $pixel_event_id = isset($_REQUEST['pixeleventid'])?$_REQUEST['pixeleventid']:null;
+            if (!is_null($pixel_event_id))
+                $pixel_code.="&eid=$pixel_event_id";
+            $pixel_code.= "&noscript=1'>";
+
         }
-        if (isset($_REQUEST[$pixel_sub]))
-            $pixel_code = '<img height="1" width="1" src="https://www.facebook.com/tr?id=' . $_REQUEST[$pixel_sub] . '&ev=' . $pixel_event . '&noscript=1">';
         if (isset($pixel_code)) {
             include_once __DIR__ . '/htmlinject.php';
             $this->pageContent = insert_after_tag($this->pageContent, '<body', $pixel_code);
