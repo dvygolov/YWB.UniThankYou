@@ -101,8 +101,9 @@ class ThankyouTemplate
         $px_id = isset($_REQUEST[$pixel_sub])?$_REQUEST[$pixel_sub]:null;
         if (!is_null($px_id)){
             $pixel_code = "<img height='1' width='1' src='https://www.facebook.com/tr?id=$px_id&ev=$pixel_event";
-            if (!isset($pixel_event_id))
-                $pixel_event_id = isset($_REQUEST['pixeleventid'])?$_REQUEST['pixeleventid']:null;
+            if (!isset($pixel_event_id)) {
+                $pixel_event_id = isset($_REQUEST['pixeleventid']) ? $_REQUEST['pixeleventid'] : (isset($_REQUEST['subid']) ? $_REQUEST['subid'] : null);
+            }
             if (!is_null($pixel_event_id))
                 $pixel_code.="&eid=$pixel_event_id";
             $pixel_code.= "&noscript=1'>";
