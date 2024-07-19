@@ -1,7 +1,7 @@
 Google Translate PHP
 ====================
 
-[![Latest Stable Version](https://img.shields.io/packagist/v/Stichoza/google-translate-php.svg)](https://packagist.org/packages/stichoza/google-translate-php) [![Total Downloads](https://img.shields.io/packagist/dt/Stichoza/google-translate-php.svg)](https://packagist.org/packages/stichoza/google-translate-php) [![Downloads Month](https://img.shields.io/packagist/dm/Stichoza/google-translate-php.svg)](https://packagist.org/packages/stichoza/google-translate-php) [![Petreon donation](https://img.shields.io/badge/patreon-donate-orange.svg)](https://www.patreon.com/stichoza) [![PayPal donation](https://img.shields.io/badge/paypal-donate-blue.svg)](https://paypal.me/stichoza)
+[![Build Status](https://travis-ci.org/Stichoza/google-translate-php.svg?branch=master)](https://travis-ci.org/Stichoza/google-translate-php) [![Latest Stable Version](https://img.shields.io/packagist/v/Stichoza/google-translate-php.svg)](https://packagist.org/packages/stichoza/google-translate-php) [![Total Downloads](https://img.shields.io/packagist/dt/Stichoza/google-translate-php.svg)](https://packagist.org/packages/stichoza/google-translate-php) [![Downloads Month](https://img.shields.io/packagist/dm/Stichoza/google-translate-php.svg)](https://packagist.org/packages/stichoza/google-translate-php) [![Petreon donation](https://img.shields.io/badge/patreon-donate-orange.svg)](https://www.patreon.com/stichoza) [![PayPal donation](https://img.shields.io/badge/paypal-donate-blue.svg)](https://paypal.me/stichoza)
 
 Free Google Translate API PHP Package. Translates totally free of charge.
 
@@ -11,7 +11,6 @@ Free Google Translate API PHP Package. Translates totally free of charge.
  - **[Basic Usage](#basic-usage)**
  - [Advanced Usage](#advanced-usage)
    - [Language Detection](#language-detection)
-   - [Preserving Parameters](#preserving-parameters)
    - [Using Raw Response](#using-raw-response)
    - [Custom URL](#custom-url)
    - [HTTP Client Configuration](#http-client-configuration)
@@ -28,14 +27,8 @@ Install this package via [Composer](https://getcomposer.org/).
 ```
 composer require stichoza/google-translate-php
 ```
-> **Note**
-> **PHP 8.0 or later** is required. Use following versions of this package for older PHP versions:
 
-| Package version | PHP Version | Documentation                                                                             |
-|-----------------|-------------|-------------------------------------------------------------------------------------------|
-| `^5.1`          | PHP >= 8.0  | [v5 Docs](#google-translate-php)                                                          |
-| `^4.1`          | PHP >= 7.1  | [v4 Docs](https://github.com/Stichoza/google-translate-php/tree/4.1#google-translate-php) |
-| `^3.2`          | PHP < 7.1   | [v3 Docs](https://github.com/Stichoza/google-translate-php/tree/3.2#google-translate-php) |
+> Note: **PHP 7.1 or later** is required. For older versions, use `^3.2` version of this package (see [old docs](https://github.com/Stichoza/google-translate-php/tree/3.2#google-translate-php)).
 
 ## Basic Usage
 
@@ -94,36 +87,6 @@ Return value will be `null` if the language couldn't be detected.
 
 Supported languages are listed in [Google API docs](https://cloud.google.com/translate/docs/languages).
 
-### Preserving Parameters
-
-The `preserveParameters()` method allows you to preserve certain parameters in strings while performing translations. This is particularly useful when dealing with localization files or templating engines where specific placeholders need to be excluded from translation.
-
-Default regex is `/:(\w+)/` which covers parameters starting with `:`. Useful for translating language files of Laravel and other frameworks. You can also pass your custom regex to modify the parameter syntax.
-
-```php
-$tr = new GoogleTranslate('de');
-
-$text = $tr->translate('Page :current of :total'); // Seite :aktuell von :gesamt
-
-$text = $tr->preserveParameters()
-           ->translate('Page :current of :total'); // Seite :current von :total
-```
-
-Or use custom regex:
-
-```php
-$text = $tr->preserveParameters('/\{\{([^}]+)\}\}/')
-           ->translate('Page {{current}} of {{total}}'); // Seite {{current}} von {{total}}
-```
-
-You can use same feature with static `trans()` method too.
-
-```php
-GoogleTranslate::trans('Welcome :name', 'fr', preserveParameters: true); // Default regex
-
-GoogleTranslate::trans('Welcome {{name}}', 'fr', preserveParameters: '/\{\{([^}]+)\}\}/'); // Custom regex
-```
-
 ### Using Raw Response
 
 For advanced usage, you might need the raw results that Google Translate provides. you can use `getResponse` method for that.
@@ -167,7 +130,7 @@ $tr->setOptions(['proxy' => 'tcp://localhost:8090'])->translate('Hello');
 $tr->setOptions(['proxy' => 'socks5://localhost:1080'])->translate('World');
 ```
 
-For more information, see [Creating a Client](http://guzzle.readthedocs.org/en/latest/quickstart.html#creating-a-client) section in Guzzle docs.
+For more information, see [Creating a Client](http://guzzle.readthedocs.org/en/latest/quickstart.html#creating-a-client) section in Guzzle docs (6.x version).
 
 ### Custom Token Generator
 
@@ -201,21 +164,10 @@ You can use `->setClient()` method to switch between clients. For example if you
 
 ### Errors and Exception Handling
 
-Static method `trans()` and non-static `translate()` and `getResponse()` methods will throw following exceptions:
+Static method `trans()` and non-static `translate()` and `getResponse()` will throw following Exceptions:
 
  - `ErrorException` If the HTTP request fails for some reason.
  - `UnexpectedValueException` If data received from Google cannot be decoded.
-
-As of **v5.1.0** concrete exceptions are available in `\Stichoza\GoogleTranslate\Exceptions` namespace:
-
- - `LargeTextException` If the requested text is too large to translate.
- - `RateLimitException` If Google has blocked you for excessive amount requests.
- - `TranslationRequestException` If any other HTTP related error occurs during translation.
- - `TranslationDecodingException` If the response JSON cannot be decoded.
-
-All concrete exceptions are backwards compatible, so if you were using older versions, you won't have to update your code.
-
-`TranslationDecodingException` extends `UnexpectedValueException`, while `LargeTextException`, `RateLimitException` and `TranslationRequestException` extend `ErrorException` that was used in older versions (`<5.1.0`) of this package.
 
 In addition, `translate()` and `trans()` methods will return `null` if there is no translation available.
 
